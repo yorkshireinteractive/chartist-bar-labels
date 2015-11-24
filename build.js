@@ -4,11 +4,12 @@ var markdown = require('metalsmith-markdown');
 var layouts = require('metalsmith-layouts');
 
 Metalsmith(__dirname)
-  // Removes the header used for the website layouts
+  // Removes the header used for the website layouts and fixes image sources
   .use(function (files, metalsmith, done) {
     fs.readFile('./src/README.md', 'utf8', function (err,data) {
       if (err) return console.log(err);
       var result = data.replace(/---([\S\s]+?)---([\s]+)/, '');
+      result = result.replace(/src="images\//g, 'src="build/images\/');
       fs.writeFile('./README.md', result, 'utf8', function (err) {
         if (err) return console.log(err);
         done();

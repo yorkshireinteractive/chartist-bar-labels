@@ -13,7 +13,7 @@ href="https://github.com/YorkshireInteractive/chartist-bar-labels">YorkshireInte
       
 ## Default usage
 
-<div class="ct-chart"></div>
+<div class="ct-chart"><img src="images/ct-chart.png"></div>
 
 ```js
 var chart1 = new Chartist.Bar('.ct-chart', {
@@ -35,7 +35,7 @@ var chart1 = new Chartist.Bar('.ct-chart', {
 
 ## Custom positioning and labeling usage
 
-<div class="ct-chart-2"></div>
+<div class="ct-chart-2"><img src="images/ct-chart-2.png"></div>
 
 ```js
 var chart2 = new Chartist.Bar('.ct-chart-2', {
