@@ -1,0 +1,23 @@
+{
+  "name": "chartist-bar-labels",
+  "version": "1.0.0",
+  "description": "A simple Chartist plugin to put labels on top of bar charts",
+  "main": "src/scripts/chartist-bar-labels.js",
+  "scripts": {
+    "start": "node build.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "chartist",
+    "plugin",
+    "svg"
+  ],
+  "author": "Yorkshire Interactive",
+  "license": "MIT",
+  "dependencies": {
+    "handlebars": "^4.0.5",
+    "metalsmith": "^2.1.0",
+    "metalsmith-layouts": "^1.4.2",
+    "metalsmith-markdown": "^0.2.1"
+  }
+}
