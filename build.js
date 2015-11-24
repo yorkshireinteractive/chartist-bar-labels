@@ -9,7 +9,7 @@ Metalsmith(__dirname)
     fs.readFile('./src/README.md', 'utf8', function (err,data) {
       if (err) return console.log(err);
       var result = data.replace(/---([\S\s]+?)---([\s]+)/, '');
-      result = result.replace(/src="images\//g, 'src="build/images\/');
+      result = result.replace(/src="images\//g, 'src="src/images\/');
       fs.writeFile('./README.md', result, 'utf8', function (err) {
         if (err) return console.log(err);
         done();
