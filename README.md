@@ -1,7 +1,7 @@
 # Chartist Bar Labels Demo
 
-A simple Chartist plugin to put labels on top of bar charts. This is
-just a demo page. For the full documentation go to the project page: <a
+A simple Chartist plugin to put labels on top of bar charts. Check out the
+project page too: <a
 href="https://github.com/YorkshireInteractive/chartist-bar-labels">YorkshireInteractive/chartist-bar-labels</a>.
 
       
