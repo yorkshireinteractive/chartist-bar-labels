@@ -68,4 +68,5 @@ var chart2 = new Chartist.Bar('.ct-chart-2', {
       }
     })
   ]
+});
 ```
