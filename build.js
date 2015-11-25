@@ -3,6 +3,8 @@ var Metalsmith = require('metalsmith');
 var markdown = require('metalsmith-markdown');
 var layouts = require('metalsmith-layouts');
 
+console.log('Building site');
+
 Metalsmith(__dirname)
   // Removes the header used for the website layouts and fixes image sources
   .use(function (files, metalsmith, done) {
@@ -34,4 +36,5 @@ Metalsmith(__dirname)
   // Build all the files into /build
   .build(function(err) {
     if (err) throw err;
+    console.log('Site build complete!');
   });
