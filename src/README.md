@@ -6,10 +6,9 @@ layout: default.html
 
 # Chartist Bar Labels Demo
 
-A simple Chartist plugin to put labels on top of bar charts. Check out the
-project page too: <a
-href="https://github.com/YorkshireInteractive/chartist-bar-labels">YorkshireInteractive/chartist-bar-labels</a>.
-
+A simple Chartist plugin to put labels on top of bar charts. Options are at the
+bottom. Check out the project page too:
+[YorkshireInteractive/chartist-bar-labels](https://github.com/YorkshireInteractive/chartist-bar-labels)
       
 ## Default usage
 
@@ -76,6 +75,48 @@ var chart2 = new Chartist.Bar('.ct-chart-2', {
   ]
 });
 ```
+
+## Options
+
+`labelClass` (default: `ct-bar-label`)
+
+The class name so you can style the text
+
+
+`labelInterpolationFnc` (default: `null`)
+
+Use this to get the text of the data and you can return your own
+formatted text. For example, for a percentage you could do this
+
+```
+Chartist.plugins.ctBarLabels({
+ labelInterpolationFnc: function (text) { return text + '%' }
+});
+```
+
+`labelOffset.x` (default: `0`) and `labelOffset.y` (default: `0`)
+
+Depending on your font size you may need to tweak these. This will nudge the
+labels by the amount of pixels given.
+
+`position.x` (default: `null`) and `position.y` (default: `null`)
+
+If labelOffset doesn't work for you and you need more custom positioning you
+can use this. You can set position.x and position.y to functions and instead of
+centering + labelOffset. This will _completely_ override the built in
+positioning so labelOffset will no longer do anything. It will pass the bar
+`data` back as the first param. Example:
+
+```
+Chartist.plugins.ctBarLabels({
+  position: {
+    x: function (data) {
+      return data.x1 + 50; // align left with 50px of padding
+    }
+  }
+});
+```
+
 ## Contributing
 
 ### Building
