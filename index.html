@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chartist Bar Labels Demo</title>
+    <meta name="description" content="A simple Chartist JavaScript plugin to put labels on top of bar charts.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" sizes="32x32" href="http://yorkshireinteractive.com/assets/ico/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="http://yorkshireinteractive.com/assets/ico/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="http://yorkshireinteractive.com/assets/ico/favicon-16x16.png">
+    <link rel="stylesheet" href="http://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Oswald:400,300,700|Slabo+27px' rel='stylesheet' type='text/css'>
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        font-family: 'slabo 27px', sans-serif;
+        line-height: 1.3;
+        color: #353535;
+        background: #FBFCFC;
+        font-size: 110%;
+      }
+
+      a {
+        color: #F1853D;
+        text-decoration: none;
+      }
+
+      code {
+        font-weight: bold;
+      }
+
+      pre code {
+        font-weight: normal;
+      }
+
+      h1,h2,h3,h4,h5,h6 {
+        font-family: Oswald, helvetica, sans-serif;
+        text-transform: uppercase;
+        font-weight: lighter;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 0px;
+      }
+
+      h2 {
+        margin: 50px 0 20px;
+      }
+
+      .prettyprint {
+        border: 1px solid #ccc !important;
+        padding: 20px !important;
+        overflow: auto;
+        background: #fff;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        border-radius: 3px;
+      }
+
+      pre .typ {
+        color: #F1853D;
+        font-weight:bold;
+      }
+
+      pre .pln {
+        color: #2b2b2b;
+      }
+
+      pre .kwd {
+        font-weight: bold;
+      }
+
+      .wrapper {
+        margin: 0 auto;
+        padding: 20px;
+        max-width: 800px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      /* Chart styling */
+      .ct-chart {
+        margin-top: 50px;
+      }
+      .ct-label {
+        font-size:0.9rem;
+      }
+
+      .ct-chart .ct-series-a .ct-bar {
+        stroke: #F1853D;
+        stroke-width: 100px;
+      }
+
+      .ct-chart-2 .ct-series-a .ct-bar {
+        stroke: #F1853D;
+        stroke-width: 40px;
+      }
+
+      .ct-bar-label {
+        font-size: 20px;
+        font-weight: bold;
+        fill: #fff;
+      }
+
+      .ct-target-line {
+        stroke: #062A5F;
+        stroke-width: 2px;
+        stroke-dasharray: 4px;
+      }
+
+      @media only screen and (max-width: 540px) {
+        .ct-chart .ct-series-a .ct-bar {
+          stroke-width: 50px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="wrapper">
+
+      <h1 id="chartist-bar-labels-demo">Chartist Bar Labels Demo</h1>
+<p>A simple Chartist plugin to put labels on top of bar charts. Options are at the
+bottom. Check out the project page too:
+<a href="https://github.com/YorkshireInteractive/chartist-bar-labels">YorkshireInteractive/chartist-bar-labels</a></p>
+<p>You can download the demo and source here: <a href="https://github.com/yorkshireinteractive/chartist-bar-labels/archive/gh-pages.zip">Download</a>.</p>
+<h2 id="default-usage">Default usage</h2>
+<div class="ct-chart"><img src="images/ct-chart.png"></div>
+
+<pre><code class="lang-js">var chart1 = new Chartist.Bar(&#39;.ct-chart&#39;, {
+  labels: [&#39;Feb&#39;, &#39;Mar&#39;, &#39;Apr&#39;, &#39;May&#39;],
+  series: [
+    [19, 15, 9, 13]
+  ],
+  },{
+  height: 400,
+  axisY: {
+    onlyInteger: true
+  },
+  plugins: [
+    Chartist.plugins.ctBarLabels()
+  ]
+});
+</code></pre>
+<h2 id="custom-positioning-and-labeling-usage">Custom positioning and labeling usage</h2>
+<div class="ct-chart-2"><img src="images/ct-chart-2.png"></div>
+
+<pre><code class="lang-js">var chart2 = new Chartist.Bar(&#39;.ct-chart-2&#39;, {
+  labels: [&#39;% to Campaign Goal&#39;, &#39;% to Prior Month&#39;, &#39;% to Prior Year&#39;],
+  series: [
+    [127, 211, 146]
+  ]
+}, {
+  chartPadding: {
+    right: 50
+  },
+  height: 350,
+  horizontalBars: true,
+  reverseData: true,
+  axisX: {
+    labelInterpolationFnc: function(value) {
+      return value + &#39;%&#39;;
+    },
+    onlyInteger: true,
+  },
+  axisY: {
+    offset: 135,
+  },
+  plugins: [
+    Chartist.plugins.ctBarLabels({
+      position: {
+        x: function (data) {
+          return data.x1 + 50
+        }
+      },
+      labelOffset: {
+        y: 7
+      },
+      labelInterpolationFnc: function (text) {
+        return text + &#39;%&#39;
+      }
+    })
+  ]
+});
+</code></pre>
+<h2 id="options">Options</h2>
+<p><code>labelClass</code> (default: <code>ct-bar-label</code>)</p>
+<p>The class name so you can style the text</p>
+<p><code>labelInterpolationFnc</code> (default: <code>null</code>)</p>
+<p>Use this to get the text of the data and you can return your own
+formatted text. For example, for a percentage you could do this</p>
+<pre><code>Chartist.plugins.ctBarLabels({
+ labelInterpolationFnc: function (text) { return text + &#39;%&#39; }
+});
+</code></pre><p><code>labelOffset.x</code> (default: <code>0</code>) and <code>labelOffset.y</code> (default: <code>0</code>)</p>
+<p>Depending on your font size you may need to tweak these. This will nudge the
+labels by the amount of pixels given.</p>
+<p><code>position.x</code> (default: <code>null</code>) and <code>position.y</code> (default: <code>null</code>)</p>
+<p>If labelOffset doesn&#39;t work for you and you need more custom positioning you
+can use this. You can set position.x and position.y to functions and instead of
+centering + labelOffset. This will <em>completely</em> override the built in
+positioning so labelOffset will no longer do anything. It will pass the bar
+<code>data</code> back as the first param. Example:</p>
+<pre><code>Chartist.plugins.ctBarLabels({
+  position: {
+    x: function (data) {
+      return data.x1 + 50; // align left with 50px of padding
+    }
+  }
+});
+</code></pre><h2 id="contributing">Contributing</h2>
+<h3 id="building">Building</h3>
+<p>To build simply run <code>npm install</code> and then <code>npm run start</code>. That will build the
+files and put them in <code>/build</code>.</p>
+<h4 id="how-it-works">How it works</h4>
+<p>The demo site is all built from the <code>src/README.md</code> file and the
+<code>layouts/default.html</code> file. Even the repo&#39;s <code>README.md</code> file is built from the
+<code>src/README.md</code> file. We use <a href="http://metalsmith.io">Metalsmith</a> to build the
+files and how it works is: src/README.md is parsed into HTML and then put into
+the <code>layouts/default.html</code> file by replacing the <code>{{{ contents }}}</code> tag. All
+other files in <code>/src</code> are moved into <code>/build</code>. It also takes the
+<code>src/README.md</code> and removes the header section with the page meta data and puts
+it in the top level directory for the project.</p>
+<p><em>NOTE: Metalsmith requires Node &gt;0.12</em></p>
+<h3 id="deploying">Deploying</h3>
+<p>To deploy you must have push access to the remote set in your <code>.git</code> directory.
+To deploy your files just run <code>npm run deploy</code>. This runs <code>npm install</code>, goes
+into the build folder, removes and creates a git repo and then commits all the
+files inside and force pushes to the <code>gh-pages</code> branch.</p>
+
+
+      <a style="display:block;width:243px;margin:20px auto;text-align:center;font-size:14px;color:#282928;line-height:1.8" href="http://yorkshireinteractive.com">
+        an open source project by
+        <img src="images/yi-badge-243x41.png" alt="Yorkshire Interactive" width="243">
+      </a>
+
+    </div>
+
+
+    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/run_prettify.min.js"></script>
+    <script src="http://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+    <script src="scripts/chartist-bar-labels.js"></script>
+    <script>
+      // Add nice styling to codez
+      $('pre').addClass('prettyprint');
+      
+      // Clear out the images we have for the README
+      $('.ct-chart, .ct-chart-2').html('');
+
+      /**
+       * The top chart on the page
+       */
+      var chart1 = new Chartist.Bar('.ct-chart', {
+        labels: ['Feb', 'Mar', 'Apr', 'May'],
+        series: [
+          [19, 15, 9, 13]
+        ],
+        },{
+        height: 400,
+        axisY: {
+          onlyInteger: true
+        },
+        plugins: [
+          Chartist.plugins.ctBarLabels()
+        ]
+      });
+
+      /**
+       * The bottom chart on the page
+       */
+      var chart2 = new Chartist.Bar('.ct-chart-2', {
+        labels: ['% to Campaign Goal', '% to Prior Month', '% to Prior Year'],
+        series: [
+          [127, 211, 146]
+        ]
+      }, {
+        chartPadding: {
+          right: 50
+        },
+        height: 350,
+        horizontalBars: true,
+        reverseData: true,
+        axisX: {
+          labelInterpolationFnc: function(value) {
+            return value + '%';
+          },
+          onlyInteger: true,
+        },
+        axisY: {
+          offset: 135,
+        },
+        plugins: [
+          Chartist.plugins.ctBarLabels({
+            position: {
+              x: function (data) {
+                return data.x1 + 50
+              }
+            },
+            labelOffset: {
+              y: 7
+            },
+            labelInterpolationFnc: function (text) {
+              return text + '%'
+            }
+          })
+        ]
+      });
+    </script>
+  </body>
+</html>
