@@ -9,7 +9,9 @@ layout: default.html
 A simple Chartist plugin to put labels on top of bar charts. Options are at the
 bottom. Check out the project page too:
 [YorkshireInteractive/chartist-bar-labels](https://github.com/YorkshireInteractive/chartist-bar-labels)
-      
+
+You can download the demo and source here: <a href="https://github.com/yorkshireinteractive/chartist-bar-labels/archive/gh-pages.zip">Download</a>.
+
 ## Default usage
 
 <div class="ct-chart"><img src="images/ct-chart.png"></div>
