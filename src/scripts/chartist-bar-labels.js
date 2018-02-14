@@ -73,6 +73,10 @@
       return ((data.y1 + data.y2) / 2) + options.labelOffset.y;
     };
 
+    var automaticClass = function (data) {
+      return 'ct-bar-label-' + String.fromCharCode(97+data.seriesIndex) + ' ' + options.labelClass;
+    };
+
     return function ctBarLabels(chart) {
       // Since it's specific to bars, verify its a bar chart
       if(chart instanceof Chartist.Bar) {
@@ -86,7 +90,7 @@
               x: positionX(data),
               y: positionY(data),
               style: 'text-anchor: middle'
-            }, options.labelClass)
+            }, automaticClass(data))
               .text(
               options.labelInterpolationFnc(
                 // If there's not x (horizontal bars) there must be a y
