@@ -90,7 +90,7 @@
               .text(
               options.labelInterpolationFnc(
                 // If there's not x (horizontal bars) there must be a y
-                data.value.x || data.value.y
+                data.value.x || data.value.y, data.index
               )
             );
           }
