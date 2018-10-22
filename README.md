@@ -64,7 +64,7 @@ var chart2 = new Chartist.Bar('.ct-chart-2', {
       labelOffset: {
         y: 7
       },
-      labelInterpolationFnc: function (text) {
+      labelInterpolationFnc: function (text, index) {
         return text + '%'
       }
     })
@@ -81,12 +81,12 @@ The class name so you can style the text
 
 `labelInterpolationFnc` (default: `null`)
 
-Use this to get the text of the data and you can return your own
+Use this to get the text and index of the data and you can return your own
 formatted text. For example, for a percentage you could do this
 
 ```
 Chartist.plugins.ctBarLabels({
- labelInterpolationFnc: function (text) { return text + '%' }
+ labelInterpolationFnc: function (text, index) { return text + '%' }
 });
 ```
 
